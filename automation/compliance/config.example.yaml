@@ -1,0 +1,5 @@
+# 审计系统配置模板
+# 用法：复制为 config.yaml 并填写真实值（config.yaml 已在 .gitignore 中忽略，避免泄露 webhook）
+threshold: 90            # 总体合规率阈值（%），低于该值触发企业微信告警
+wechat_webhook: ""       # 企业微信机器人 Webhook URL；留空则仅在控制台打印告警内容
+report_dir: reports      # 报告输出目录（相对本目录）

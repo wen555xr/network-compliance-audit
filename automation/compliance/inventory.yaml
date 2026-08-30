@@ -1,0 +1,37 @@
+# 真实 eNSP 设备清单（SSH 连接）
+# host 填写设备管理地址（VLANIF 100），需通过 eNSP「Cloud」桥接到宿主机环回适配器后可达。
+# 说明：
+#   - device_type 用 huawei（SSH）；若 eNSP SSH 协商失败，可临时改 huawei_telnet 降级（见搭建指南）。
+#   - password 需与设备上实际配置的 SSH 登录口令一致，请按需修改。
+devices:
+  - name: SW-Core
+    role: 核心层
+    host: 192.168.100.1
+    device_type: huawei
+    username: admin
+    password: Admin@321
+    port: 22
+
+  - name: SW-Agg
+    role: 汇聚层
+    host: 192.168.100.2
+    device_type: huawei
+    username: admin
+    password: Admin@321
+    port: 22
+
+  - name: SW-Acc1
+    role: 接入层
+    host: 192.168.100.11
+    device_type: huawei
+    username: admin
+    password: Admin@321
+    port: 22
+
+  - name: SW-Acc2
+    role: 接入层
+    host: 192.168.100.12
+    device_type: huawei_telnet   # Acc2 故意未开 SSH（演示 R05/R06 违规），改用 Telnet 采集
+    username: admin
+    password: Admin@123
+    port: 23

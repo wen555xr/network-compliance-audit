@@ -1,0 +1,59 @@
+<mxfile host="app.diagrams.net" modified="2026-08-30T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+  <diagram name="园区网络拓扑" id="campus-topo">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="host" value="宿主机&#10;环回适配器&#10;192.168.100.250" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="200" y="60" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cloud" value="Cloud 云" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="205" y="180" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="core" value="SW-Core 核心层&#10;Vlanif100 = 192.168.100.1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="195" y="320" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="agg" value="SW-Agg 汇聚层&#10;Vlanif100 = 192.168.100.2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="195" y="450" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="acc1" value="SW-Acc1 接入层&#10;Vlanif100 = 192.168.100.11&#10;VLAN10/20" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="acc2" value="SW-Acc2 接入层&#10;Vlanif100 = 192.168.100.12&#10;VLAN20/30" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="350" y="580" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-host" value="host&#10;VLAN100" style="text;html=1;align=center;verticalAlign=middle;fontColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="70" width="60" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-cloud" value="VLAN100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="host" target="cloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-core-cloud" value="Gi0/0/24&#10;VLAN100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="cloud" target="core">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-core-agg" value="Gi0/0/1 Trunk&#10;VLAN 10/20/30/100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="core" target="agg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-agg-acc1" value="Gi0/0/2 Trunk&#10;VLAN 10/100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="agg" target="acc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-agg-acc2" value="Gi0/0/3 Trunk&#10;VLAN 20/30/100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="agg" target="acc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

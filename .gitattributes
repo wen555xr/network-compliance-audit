@@ -1,0 +1,2 @@
+# 统一文本文件行尾，避免 Windows/Linux 换行差异；二进制文件（xlsx 等）自动识别不受影响
+* text=auto

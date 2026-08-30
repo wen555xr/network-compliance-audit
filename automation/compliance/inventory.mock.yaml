@@ -1,0 +1,36 @@
+# 离线联调设备清单（指向本机 mock 服务器 mock/mock_device.py）
+# 用法：
+#   1) py -3.12 mock/mock_device.py            # 启动伪 SSH 服务器
+#   2) py -3.12 main.py --source mock -i inventory.mock.yaml
+devices:
+  - name: SW-Core
+    role: 核心层
+    host: 127.0.0.1
+    device_type: huawei
+    username: admin
+    password: Admin@123
+    port: 10001
+
+  - name: SW-Agg
+    role: 汇聚层
+    host: 127.0.0.1
+    device_type: huawei
+    username: admin
+    password: Admin@123
+    port: 10002
+
+  - name: SW-Acc1
+    role: 接入层
+    host: 127.0.0.1
+    device_type: huawei
+    username: admin
+    password: Admin@123
+    port: 10003
+
+  - name: SW-Acc2
+    role: 接入层
+    host: 127.0.0.1
+    device_type: huawei
+    username: admin
+    password: Admin@123
+    port: 10004

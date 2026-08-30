@@ -1,0 +1,95 @@
+# 合规规则库（数据驱动）
+# 每条规则包含：编号、名称、类别、严重性、检查类型、正则、描述、修复建议。
+# check_type 取值：
+#   regex_present —— 配置中必须出现该正则，否则违规
+#   regex_absent  —— 配置中一旦出现该正则即违规（如默认串、明文服务）
+rules:
+  - id: R01
+    name: SNMP 社区串安全
+    category: SNMP 安全性
+    severity: high
+    check_type: regex_absent
+    pattern: 'snmp-agent community.*(public|private)'
+    description: 不应使用默认只读/读写社区串 public、private
+    remediation: 将社区串改为自定义值并使用 cipher 加密，或迁移至 SNMPv3
+
+  - id: R02
+    name: AAA 本地认证
+    category: AAA 认证
+    severity: high
+    check_type: regex_present
+    pattern: 'authentication-mode aaa'
+    description: VTY 远程登录应统一走 AAA 认证
+    remediation: 在 user-interface vty 下配置 authentication-mode aaa
+
+  - id: R03
+    name: 本地用户密码加密
+    category: AAA 认证
+    severity: high
+    check_type: regex_absent
+    pattern: 'local-user\s+\S+\s+password\s+(simple|cipher)\s'
+    description: 本地用户密码不应以明文(simple)或可逆(cipher)方式存储
+    remediation: 使用 irreversible-cipher 不可逆加密存储本地用户密码
+
+  - id: R04
+    name: 无默认弱口令
+    category: AAA 认证
+    severity: high
+    check_type: regex_absent
+    pattern: 'admin@123|huawei@123|admin123|123456|huawei12#|changeme|password123'
+    description: 不应使用 admin@123 等出厂默认或常见弱口令
+    remediation: 更换为满足复杂度要求的强口令（长度≥8，含大小写/数字/特殊字符）
+
+  - id: R05
+    name: SSH 服务启用
+    category: 高危服务端口
+    severity: high
+    check_type: regex_present
+    pattern: 'stelnet server enable'
+    description: 远程管理应使用加密的 STelnet(SSH) 协议
+    remediation: 生成 RSA 密钥对并执行 stelnet server enable，配置 SSH 用户
+
+  - id: R06
+    name: Telnet 服务关闭
+    category: 高危服务端口
+    severity: high
+    check_type: regex_absent
+    pattern: '\btelnet server enable|protocol inbound (telnet|all)'
+    description: 不应开启明文 Telnet 服务
+    remediation: 关闭 telnet server enable，vty 下 protocol inbound 仅保留 ssh
+
+  - id: R07
+    name: HTTP 服务关闭
+    category: 高危服务端口
+    severity: high
+    check_type: regex_absent
+    pattern: 'http server enable|web server enable'
+    description: 不应开启明文 HTTP/Web 管理服务
+    remediation: 执行 undo http server enable 关闭明文 Web 管理
+
+  - id: R08
+    name: 日志服务器配置
+    category: 日志管理
+    severity: medium
+    check_type: regex_present
+    pattern: 'info-center loghost\s+\S+'
+    description: 应配置集中日志服务器收集设备日志
+    remediation: 执行 info-center loghost <日志服务器IP> 集中收集日志
+
+  - id: R09
+    name: 日志时间戳使能
+    category: 日志管理
+    severity: medium
+    check_type: regex_present
+    pattern: 'info-center timestamp (log|trap|debug)'
+    description: 日志应带时间戳以便溯源与关联分析
+    remediation: 执行 info-center timestamp log date 使日志带时间戳
+
+  - id: R10
+    name: 管理通道 ACL
+    category: 访问控制
+    severity: medium
+    check_type: regex_present
+    pattern: 'acl\s+\d+\s+inbound'
+    description: 应通过 ACL 限制远程登录的源地址范围
+    remediation: 定义管理 ACL 并在 vty 下 acl <n> inbound 限制登录源

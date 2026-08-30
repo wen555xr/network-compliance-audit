@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行产物（审计报告为生成物，不入库；sample_output 单独保留演示样例）
+automation/compliance/reports/
+
+# 敏感配置（企业微信 webhook、设备口令等）
+automation/compliance/config.yaml
+
+# IDE / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 备份缓存
+automation/compliance/raw/

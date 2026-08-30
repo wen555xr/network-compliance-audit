@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网络设备配置合规审计报告</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif; background: #f5f6f8; color: #202124; padding: 24px; }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: #fff; padding: 28px 32px; border-radius: 12px; margin-bottom: 20px; }
+  header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  header .sub { font-size: 13px; opacity: .85; }
+  header .overall { font-size: 40px; font-weight: 800; margin-top: 12px; }
+  .kpi-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+  .kpi { flex: 1 1 150px; background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .kpi .label { font-size: 12px; color: #5f6368; }
+  .kpi .value { font-size: 26px; font-weight: 700; margin-top: 4px; }
+  .card { background: #fff; border-radius: 10px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .card h2 { font-size: 16px; font-weight: 700; margin-bottom: 14px; border-left: 4px solid #1a73e8; padding-left: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid #eef0f3; }
+  th { background: #fafbfc; color: #5f6368; font-weight: 600; }
+  .pass { color: #137333; font-weight: 700; }
+  .fail { color: #c5221f; font-weight: 700; }
+  .cell-p { color: #137333; font-weight: 700; }
+  .cell-f { color: #c5221f; font-weight: 700; }
+  .violation { border-left: 4px solid #e0e0e0; padding: 12px 14px; margin-bottom: 12px; background: #fafbfc; border-radius: 6px; }
+  .violation.high { border-left-color: #d93025; }
+  .violation.medium { border-left-color: #e37400; }
+  .violation .sev { font-size: 11px; color: #fff; padding: 1px 8px; border-radius: 10px; margin-left: 8px; }
+  .evidence { font-family: Consolas, monospace; font-size: 12px; background: #f1f3f4; padding: 6px 10px; border-radius: 4px; margin-top: 6px; color: #3c4043; white-space: pre-wrap; }
+  .remediation { color: #137333; font-size: 13px; margin-top: 6px; }
+  .muted { color: #5f6368; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>网络设备配置合规性自动审计报告</h1>
+    <div class="sub">生成时间：2026-08-30 22:09:30　·　审计规则：10 项　·　审计对象：华为 S5700 园区网络（eNSP）</div>
+    <div class="overall" style="color:#c5221f">65.0%</div>
+    <div class="sub">总体合规率（阈值 90%）</div>
+  </header>
+
+  <div class="kpi-row"><div class="kpi"><div class="label">审计设备数</div><div class="value" style="color:#202124">4</div></div><div class="kpi"><div class="label">合规设备</div><div class="value" style="color:#137333">1</div></div><div class="kpi"><div class="label">不合规设备</div><div class="value" style="color:#c5221f">3</div></div><div class="kpi"><div class="label">总体合规率</div><div class="value" style="color:#c5221f">65.0%</div></div><div class="kpi"><div class="label">告警阈值</div><div class="value" style="color:#202124">90%</div></div><div class="kpi"><div class="label">告警状态</div><div class="value" style="color:#c5221f">已触发</div></div></div>
+
+  <div class="card">
+    <h2>设备合规率总览</h2>
+    <table><thead><tr><th>设备</th><th>角色</th><th>管理IP</th><th>通过</th><th>合规率</th><th>状态</th><th title="SNMP 社区串安全">R01</th><th title="AAA 本地认证">R02</th><th title="本地用户密码加密">R03</th><th title="无默认弱口令">R04</th><th title="SSH 服务启用">R05</th><th title="Telnet 服务关闭">R06</th><th title="HTTP 服务关闭">R07</th><th title="日志服务器配置">R08</th><th title="日志时间戳使能">R09</th><th title="管理通道 ACL">R10</th></tr></thead><tbody><tr><td><b>SW-Acc1</b></td><td class="muted">接入层</td><td class="muted">192.168.100.11</td><td>6/10</td><td style="color:#c5221f;font-weight:700">60.0%</td><td><span style="background:#fce8e6;color:#c5221f;padding:2px 10px;border-radius:12px;font-weight:600">不合规</span></td><td class="cell-f" title="SNMP 社区串安全">✗</td><td class="cell-p" title="AAA 本地认证">✓</td><td class="cell-p" title="本地用户密码加密">✓</td><td class="cell-p" title="无默认弱口令">✓</td><td class="cell-p" title="SSH 服务启用">✓</td><td class="cell-p" title="Telnet 服务关闭">✓</td><td class="cell-f" title="HTTP 服务关闭">✗</td><td class="cell-f" title="日志服务器配置">✗</td><td class="cell-f" title="日志时间戳使能">✗</td><td class="cell-p" title="管理通道 ACL">✓</td></tr><tr><td><b>SW-Acc2</b></td><td class="muted">接入层</td><td class="muted">192.168.100.12</td><td>3/10</td><td style="color:#c5221f;font-weight:700">30.0%</td><td><span style="background:#fce8e6;color:#c5221f;padding:2px 10px;border-radius:12px;font-weight:600">不合规</span></td><td class="cell-f" title="SNMP 社区串安全">✗</td><td class="cell-p" title="AAA 本地认证">✓</td><td class="cell-f" title="本地用户密码加密">✗</td><td class="cell-f" title="无默认弱口令">✗</td><td class="cell-f" title="SSH 服务启用">✗</td><td class="cell-f" title="Telnet 服务关闭">✗</td><td class="cell-f" title="HTTP 服务关闭">✗</td><td class="cell-f" title="日志服务器配置">✗</td><td class="cell-p" title="日志时间戳使能">✓</td><td class="cell-p" title="管理通道 ACL">✓</td></tr><tr><td><b>SW-Agg</b></td><td class="muted">汇聚层</td><td class="muted">192.168.100.2</td><td>7/10</td><td style="color:#b06000;font-weight:700">70.0%</td><td><span style="background:#fce8e6;color:#c5221f;padding:2px 10px;border-radius:12px;font-weight:600">不合规</span></td><td class="cell-p" title="SNMP 社区串安全">✓</td><td class="cell-p" title="AAA 本地认证">✓</td><td class="cell-p" title="本地用户密码加密">✓</td><td class="cell-p" title="无默认弱口令">✓</td><td class="cell-p" title="SSH 服务启用">✓</td><td class="cell-p" title="Telnet 服务关闭">✓</td><td class="cell-p" title="HTTP 服务关闭">✓</td><td class="cell-f" title="日志服务器配置">✗</td><td class="cell-f" title="日志时间戳使能">✗</td><td class="cell-f" title="管理通道 ACL">✗</td></tr><tr><td><b>SW-Core</b></td><td class="muted">核心层</td><td class="muted">192.168.100.1</td><td>10/10</td><td style="color:#137333;font-weight:700">100.0%</td><td><span style="background:#e6f4ea;color:#137333;padding:2px 10px;border-radius:12px;font-weight:600">合规</span></td><td class="cell-p" title="SNMP 社区串安全">✓</td><td class="cell-p" title="AAA 本地认证">✓</td><td class="cell-p" title="本地用户密码加密">✓</td><td class="cell-p" title="无默认弱口令">✓</td><td class="cell-p" title="SSH 服务启用">✓</td><td class="cell-p" title="Telnet 服务关闭">✓</td><td class="cell-p" title="HTTP 服务关闭">✓</td><td class="cell-p" title="日志服务器配置">✓</td><td class="cell-p" title="日志时间戳使能">✓</td><td class="cell-p" title="管理通道 ACL">✓</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>不合规设备清单与改进建议</h2>
+    <div style="margin-bottom:18px"><h3 style="font-size:15px;margin-bottom:10px">SW-Acc1 <span class="muted">（接入层 · 192.168.100.11 · 合规率 <span style="color:#c5221f">60.0%</span>）</span></h3><div class="violation high"><b>R01 SNMP 社区串安全</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">不应使用默认只读/读写社区串 public、private</div><div class="evidence">snmp-agent community read cipher public</div><div class="remediation">✅ 改进建议：将社区串改为自定义值并使用 cipher 加密，或迁移至 SNMPv3</div></div><div class="violation high"><b>R07 HTTP 服务关闭</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">不应开启明文 HTTP/Web 管理服务</div><div class="evidence">http server enable</div><div class="remediation">✅ 改进建议：执行 undo http server enable 关闭明文 Web 管理</div></div><div class="violation medium"><b>R08 日志服务器配置</b><span class="sev" style="background:#e37400">中危</span><div class="muted" style="margin-top:4px">应配置集中日志服务器收集设备日志</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：执行 info-center loghost &lt;日志服务器IP&gt; 集中收集日志</div></div><div class="violation medium"><b>R09 日志时间戳使能</b><span class="sev" style="background:#e37400">中危</span><div class="muted" style="margin-top:4px">日志应带时间戳以便溯源与关联分析</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：执行 info-center timestamp log date 使日志带时间戳</div></div></div><div style="margin-bottom:18px"><h3 style="font-size:15px;margin-bottom:10px">SW-Acc2 <span class="muted">（接入层 · 192.168.100.12 · 合规率 <span style="color:#c5221f">30.0%</span>）</span></h3><div class="violation high"><b>R01 SNMP 社区串安全</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">不应使用默认只读/读写社区串 public、private</div><div class="evidence">snmp-agent community read public</div><div class="remediation">✅ 改进建议：将社区串改为自定义值并使用 cipher 加密，或迁移至 SNMPv3</div></div><div class="violation high"><b>R03 本地用户密码加密</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">本地用户密码不应以明文(simple)或可逆(cipher)方式存储</div><div class="evidence">local-user admin password simple Admin@123</div><div class="remediation">✅ 改进建议：使用 irreversible-cipher 不可逆加密存储本地用户密码</div></div><div class="violation high"><b>R04 无默认弱口令</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">不应使用 admin@123 等出厂默认或常见弱口令</div><div class="evidence">local-user admin password simple Admin@123</div><div class="remediation">✅ 改进建议：更换为满足复杂度要求的强口令（长度≥8，含大小写/数字/特殊字符）</div></div><div class="violation high"><b>R05 SSH 服务启用</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">远程管理应使用加密的 STelnet(SSH) 协议</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：生成 RSA 密钥对并执行 stelnet server enable，配置 SSH 用户</div></div><div class="violation high"><b>R06 Telnet 服务关闭</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">不应开启明文 Telnet 服务</div><div class="evidence">telnet server enable
+protocol inbound telnet</div><div class="remediation">✅ 改进建议：关闭 telnet server enable，vty 下 protocol inbound 仅保留 ssh</div></div><div class="violation high"><b>R07 HTTP 服务关闭</b><span class="sev" style="background:#d93025">高危</span><div class="muted" style="margin-top:4px">不应开启明文 HTTP/Web 管理服务</div><div class="evidence">http server enable</div><div class="remediation">✅ 改进建议：执行 undo http server enable 关闭明文 Web 管理</div></div><div class="violation medium"><b>R08 日志服务器配置</b><span class="sev" style="background:#e37400">中危</span><div class="muted" style="margin-top:4px">应配置集中日志服务器收集设备日志</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：执行 info-center loghost &lt;日志服务器IP&gt; 集中收集日志</div></div></div><div style="margin-bottom:18px"><h3 style="font-size:15px;margin-bottom:10px">SW-Agg <span class="muted">（汇聚层 · 192.168.100.2 · 合规率 <span style="color:#b06000">70.0%</span>）</span></h3><div class="violation medium"><b>R08 日志服务器配置</b><span class="sev" style="background:#e37400">中危</span><div class="muted" style="margin-top:4px">应配置集中日志服务器收集设备日志</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：执行 info-center loghost &lt;日志服务器IP&gt; 集中收集日志</div></div><div class="violation medium"><b>R09 日志时间戳使能</b><span class="sev" style="background:#e37400">中危</span><div class="muted" style="margin-top:4px">日志应带时间戳以便溯源与关联分析</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：执行 info-center timestamp log date 使日志带时间戳</div></div><div class="violation medium"><b>R10 管理通道 ACL</b><span class="sev" style="background:#e37400">中危</span><div class="muted" style="margin-top:4px">应通过 ACL 限制远程登录的源地址范围</div><div class="evidence">（未在配置中命中合规项）</div><div class="remediation">✅ 改进建议：定义管理 ACL 并在 vty 下 acl &lt;n&gt; inbound 限制登录源</div></div></div>
+  </div>
+
+  <div class="card">
+    <h2>Top 违规规则</h2>
+    <table><thead><tr><th>规则</th><th>名称</th><th>类别</th><th>严重性</th><th>违规设备数</th></tr></thead><tbody><tr><td><b>R08</b></td><td>日志服务器配置</td><td class="muted">日志管理</td><td><span style="color:#e37400;font-weight:600">中危</span></td><td class="fail">3 台</td></tr><tr><td><b>R01</b></td><td>SNMP 社区串安全</td><td class="muted">SNMP 安全性</td><td><span style="color:#d93025;font-weight:600">高危</span></td><td class="fail">2 台</td></tr><tr><td><b>R07</b></td><td>HTTP 服务关闭</td><td class="muted">高危服务端口</td><td><span style="color:#d93025;font-weight:600">高危</span></td><td class="fail">2 台</td></tr><tr><td><b>R09</b></td><td>日志时间戳使能</td><td class="muted">日志管理</td><td><span style="color:#e37400;font-weight:600">中危</span></td><td class="fail">2 台</td></tr><tr><td><b>R03</b></td><td>本地用户密码加密</td><td class="muted">AAA 认证</td><td><span style="color:#d93025;font-weight:600">高危</span></td><td class="fail">1 台</td></tr></tbody></table>
+  </div>
+
+  <p class="muted" style="text-align:center;font-size:12px;margin-top:8px">本报告由「网络设备配置合规性自动审计系统」自动生成（Python + Netmiko + 正则解析引擎）</p>
+</div>
+</body>
+</html>
